@@ -76,6 +76,18 @@ export async function POST(request: Request) {
 
         if (subscription.status === 'active') {
           db.prepare("UPDATE users SET subscription_status = 'active' WHERE id = ?").run(user.id);
+          // Extend the active subscription by the plan's duration
+          const activeSub = db.prepare(
+            `SELECT s.id, tp.duration_days FROM subscriptions s
+             JOIN tariff_plans tp ON s.tariff_plan_id = tp.id
+             WHERE s.user_id = ? AND s.status = 'active'
+             ORDER BY s.created_at DESC LIMIT 1`
+          ).get(user.id) as { id: number; duration_days: number } | undefined;
+          if (activeSub) {
+            db.prepare(
+              "UPDATE subscriptions SET end_date = datetime('now', '+' || ? || ' days'), updated_at = datetime('now') WHERE id = ?"
+            ).run(activeSub.duration_days, activeSub.id);
+          }
         } else if (subscription.status === 'canceled' || subscription.status === 'past_due') {
           db.prepare("UPDATE users SET subscription_status = 'free', stripe_subscription_id = NULL, max_interviews_per_day = 2 WHERE id = ?").run(user.id);
           db.prepare("UPDATE subscriptions SET status = 'cancelled' WHERE user_id = ? AND status = 'active'").run(user.id);

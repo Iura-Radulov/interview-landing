@@ -44,14 +44,35 @@ export function getUserByTelegramId(telegramId: number): User | null {
 
 export function getActiveTariffs(): TariffPlan[] {
   const stmt = getDb().prepare(
-    'SELECT * FROM tariff_plans WHERE is_active = 1 ORDER BY price ASC'
+    'SELECT id, name, price, duration_days, features, features_ru, max_interviews_per_day, is_active, created_at, updated_at FROM tariff_plans WHERE is_active = 1 ORDER BY price ASC'
   );
-  const rows = stmt.all() as Array<Omit<TariffPlan, 'features'> & { features: string }>;
-  return rows.map((row) => ({
-    ...row,
-    features: JSON.parse(row.features || '[]'),
-    is_active: Boolean(row.is_active),
-  }));
+  const rows = stmt.all() as Array<Omit<TariffPlan, 'features' | 'features_ru'> & { features: string; features_ru: string | null }>;
+  return rows.map((row) => {
+    let features: string[];
+    try {
+      const parsed = JSON.parse(row.features || '[]');
+      features = Array.isArray(parsed) ? parsed : typeof parsed === 'string' ? parsed.split(',').map((s: string) => s.trim()) : [];
+    } catch {
+      features = typeof row.features === 'string' ? row.features.split(',').map((s) => s.trim()) : [];
+    }
+
+    let features_ru: string[] | null = null;
+    if (row.features_ru) {
+      try {
+        const parsed = JSON.parse(row.features_ru);
+        features_ru = Array.isArray(parsed) ? parsed : typeof parsed === 'string' ? parsed.split(',').map((s: string) => s.trim()) : null;
+      } catch {
+        features_ru = row.features_ru.split(',').map((s) => s.trim());
+      }
+    }
+
+    return {
+      ...row,
+      features,
+      features_ru,
+      is_active: Boolean(row.is_active),
+    };
+  });
 }
 
 export function getUserStats(telegramId: number): UserStats {
@@ -126,15 +147,19 @@ export function getUserSubscription(telegramId: number): Subscription | null {
 
   const row = db
     .prepare(
-      `SELECT s.*, tp.name as plan_name, tp.features
+      `SELECT s.*, tp.name as plan_name, tp.features, tp.features_ru
        FROM subscriptions s
        JOIN tariff_plans tp ON s.tariff_plan_id = tp.id
        WHERE s.user_id = ? AND s.status = 'active' AND s.end_date > datetime('now')
-       ORDER BY s.end_date DESC
+       ORDER BY s.created_at DESC
        LIMIT 1`,
     )
-    .get(user.id) as (Omit<Subscription, 'features'> & { features: string }) | undefined;
+    .get(user.id) as (Omit<Subscription, 'features' | 'features_ru' | 'payment_type'> & { features: string; features_ru: string | null; payment_type: string | null }) | undefined;
 
   if (!row) return null;
-  return { ...row, features: JSON.parse(row.features || '[]') };
+  return {
+    ...row,
+    features: JSON.parse(row.features || '[]'),
+    features_ru: row.features_ru ? JSON.parse(row.features_ru) : null,
+  };
 }

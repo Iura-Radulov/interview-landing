@@ -1,29 +1,33 @@
+'use client';
+
 import Link from 'next/link';
 import { BOT_USERNAME } from '@/lib/constants';
+import { useTranslation } from '@/lib/i18n';
 
 export default function Footer() {
   const currentYear = 2026;
+  const { t } = useTranslation();
 
   return (
     <footer style={{ backgroundColor: '#0f172a' }} className="text-slate-400">
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-12">
           <div>
-            <h4 className="text-white font-semibold mb-4">Product</h4>
+            <h4 className="text-white font-semibold mb-4">{t('footer.product')}</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
-                  Home
+                  {t('footer.home')}
                 </Link>
               </li>
               <li>
                 <Link href="/tariffs" className="hover:text-white transition-colors">
-                  Pricing
+                  {t('footer.pricing')}
                 </Link>
               </li>
               <li>
                 <Link href="/dashboard" className="hover:text-white transition-colors">
-                  Dashboard
+                  {t('footer.dashboard')}
                 </Link>
               </li>
               <li>
@@ -33,28 +37,28 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  Telegram Bot
+                  {t('footer.telegram_bot')}
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
+            <h4 className="text-white font-semibold mb-4">{t('footer.company')}</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
-                  About
+                  {t('footer.about')}
                 </Link>
               </li>
               <li>
                 <Link href="/privacy" className="hover:text-white transition-colors">
-                  Privacy Policy
+                  {t('footer.privacy')}
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="hover:text-white transition-colors">
-                  Terms of Service
+                  {t('footer.terms')}
                 </Link>
               </li>
             </ul>
@@ -62,7 +66,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 pt-8 text-sm text-center text-slate-500">
-          © {currentYear} AI Interview Trainer. All rights reserved.
+          {t('footer.copyright', { year: currentYear })}
         </div>
       </div>
     </footer>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { TariffPlan } from '@/types';
 import { BOT_USERNAME } from '@/lib/constants';
+import { useTranslation } from '@/lib/i18n';
 
 interface TariffCardProps {
   plan: TariffPlan;
@@ -12,11 +13,14 @@ interface TariffCardProps {
 
 export default function TariffCard({ plan, highlighted = false }: TariffCardProps) {
   const router = useRouter();
+  const { t, uiLang } = useTranslation();
   const [loading, setLoading] = useState(false);
   const botLink = `https://t.me/${BOT_USERNAME}`;
   const isFree = plan.price === 0;
-  const priceDisplay = isFree ? 'Free Forever' : `$${plan.price.toFixed(2)}`;
-  const periodDisplay = isFree ? '' : ' / month';
+  const priceDisplay = isFree ? t('tariffs.free_forever') : `$${plan.price.toFixed(2)}`;
+  const periodDisplay = isFree ? '' : ` ${t('tariffs.per_month')}`;
+  // Use Russian features when interface language is Russian
+  const displayFeatures = uiLang === 'ru' && plan.features_ru ? plan.features_ru : plan.features;
 
   const handleSubscribe = async () => {
     if (isFree) {
@@ -61,7 +65,7 @@ export default function TariffCard({ plan, highlighted = false }: TariffCardProp
       {highlighted && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2">
           <span className="inline-flex items-center px-4 py-1 rounded-full bg-slate-900 text-white text-xs font-bold tracking-wide uppercase shadow">
-            Most Popular
+            {t('tariffs.most_popular')}
           </span>
         </div>
       )}
@@ -86,13 +90,13 @@ export default function TariffCard({ plan, highlighted = false }: TariffCardProp
         </div>
         {!isFree && (
           <p className={`text-sm mt-1 ${highlighted ? 'text-emerald-100' : 'text-slate-400'}`}>
-            {plan.duration_days} days access
+            {t('tariffs.duration', { days: plan.duration_days })}
           </p>
         )}
       </div>
 
       <ul className="space-y-3 mb-8 flex-1">
-        {plan.features.map((feature, index) => (
+        {displayFeatures.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
             <span
               className={`mt-0.5 flex-shrink-0 text-lg ${highlighted ? 'text-emerald-100' : 'text-emerald-500'}`}
@@ -117,7 +121,7 @@ export default function TariffCard({ plan, highlighted = false }: TariffCardProp
             : 'bg-emerald-500 hover:bg-emerald-400 text-white'
         }`}
       >
-        {loading ? 'Redirecting...' : isFree ? 'Get Started' : 'Subscribe Now'}
+        {loading ? t('tariffs.redirecting') : isFree ? t('tariffs.get_started') : t('tariffs.subscribe_now')}
       </button>
     </div>
   );

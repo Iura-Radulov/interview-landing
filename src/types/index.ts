@@ -4,6 +4,7 @@ export interface TariffPlan {
   price: number;
   duration_days: number;
   features: string[];
+  features_ru: string[] | null;
   max_interviews_per_day: number;
   is_active: boolean;
 }
@@ -28,6 +29,8 @@ export interface Subscription {
   end_date: string;
   plan_name: string;
   features: string[];
+  features_ru: string[] | null;
+  payment_type: string | null;
 }
 
 export interface UserStats {

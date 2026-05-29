@@ -2,14 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, ListChecks, UserCircle, Smartphone, LogOut, X } from 'lucide-react';
-import { MINI_APP_URL } from '@/lib/constants';
-
-const navLinks = [
-  { href: '/dashboard', icon: LayoutDashboard, label: 'Home' },
-  { href: '/dashboard/interviews', icon: ListChecks, label: 'My Interviews' },
-  { href: '/dashboard/profile', icon: UserCircle, label: 'Profile' },
-];
+import { LayoutDashboard, ListChecks, UserCircle, Smartphone, ExternalLink, Bot, LogOut, X, House } from 'lucide-react';
+import { MINI_APP_WEB_URL, MINI_APP_URL, LANDING_URL } from '@/lib/constants';
+import { useTranslation } from '@/lib/i18n';
 
 interface DashboardSidebarProps {
   isOpen: boolean;
@@ -19,6 +14,13 @@ interface DashboardSidebarProps {
 
 export default function DashboardSidebar({ isOpen, onClose, onLogout }: DashboardSidebarProps) {
   const pathname = usePathname();
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { href: '/dashboard', icon: LayoutDashboard, label: t('dashboard.home') },
+    { href: '/dashboard/interviews', icon: ListChecks, label: t('dashboard.my_interviews') },
+    { href: '/dashboard/profile', icon: UserCircle, label: t('dashboard.profile') },
+  ];
 
   return (
     <>
@@ -41,22 +43,28 @@ export default function DashboardSidebar({ isOpen, onClose, onLogout }: Dashboar
           'lg:w-60',
         ].join(' ')}
       >
-        {/* Logo / app name */}
-        <div className="flex items-center gap-3 px-4 py-5 border-b border-white/10 shrink-0">
+        {/* Logo / app name — ссылка на главную лендинга */}
+        <a
+          href={LANDING_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-3 px-4 py-5 border-b border-white/10 shrink-0 hover:bg-white/5 transition-colors"
+        >
           <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center font-bold text-sm shrink-0">
             AI
           </div>
           <span className="font-semibold text-sm truncate md:hidden lg:block">
             AI Interview
           </span>
+          <ExternalLink className="w-3 h-3 ml-auto text-white/30 md:hidden lg:block" />
           <button
-            onClick={onClose}
+            onClick={(e) => { e.preventDefault(); onClose(); }}
             className="ml-auto text-white/60 hover:text-white lg:hidden"
             aria-label="Close sidebar"
           >
             <X className="w-5 h-5" />
           </button>
-        </div>
+        </a>
 
         {/* Navigation */}
         <nav className="flex-1 py-4 overflow-y-auto">
@@ -80,15 +88,40 @@ export default function DashboardSidebar({ isOpen, onClose, onLogout }: Dashboar
             );
           })}
 
+          {/* Ссылка на главную лендинга */}
+          <a
+            href={LANDING_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors text-sm text-white/70 hover:bg-blue-600/20 hover:text-blue-400"
+          >
+            <House className="w-5 h-5 shrink-0" />
+            <span className="truncate md:hidden lg:block">techinterviewai.com</span>
+            <ExternalLink className="w-3 h-3 ml-auto opacity-50 md:hidden lg:block" />
+          </a>
+
+          <a
+            href={MINI_APP_WEB_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors text-sm text-white/70 hover:bg-blue-600/20 hover:text-blue-400"
+          >
+            <Smartphone className="w-5 h-5 shrink-0" />
+            <span className="truncate md:hidden lg:block">{t('dashboard.web_app')}</span>
+            <ExternalLink className="w-3 h-3 ml-auto opacity-50 md:hidden lg:block" />
+          </a>
+
           <a
             href={MINI_APP_URL}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors text-sm text-white/70 hover:bg-white/10 hover:text-white"
+            className="flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors text-sm text-white/50 hover:text-white"
           >
-            <Smartphone className="w-5 h-5 shrink-0" />
-            <span className="truncate md:hidden lg:block">Mini App</span>
+            <Bot className="w-4 h-4 shrink-0" />
+            <span className="truncate md:hidden lg:block text-xs">{t('dashboard.open_in_telegram')}</span>
           </a>
+
+          <div className="border-t border-white/5 my-2 mx-4" />
         </nav>
 
         {/* Logout */}
@@ -98,7 +131,7 @@ export default function DashboardSidebar({ isOpen, onClose, onLogout }: Dashboar
             className="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm text-white/70 hover:bg-red-500/20 hover:text-red-400"
           >
             <LogOut className="w-5 h-5 shrink-0" />
-            <span className="truncate md:hidden lg:block">Logout</span>
+            <span className="truncate md:hidden lg:block">{t('dashboard.logout')}</span>
           </button>
         </div>
       </aside>
