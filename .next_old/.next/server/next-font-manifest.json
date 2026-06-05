@@ -1,0 +1,49 @@
+{
+  "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/about/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/auth/login/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/companies/[slug]/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/companies/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/dashboard/companies/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/dashboard/interviews/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/dashboard/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/dashboard/profile/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/dashboard/resumes/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/privacy/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/tariffs/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ],
+    "[project]/src/app/terms/page": [
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

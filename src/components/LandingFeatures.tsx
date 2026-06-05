@@ -41,6 +41,11 @@ export default function LandingFeatures() {
       titleKey: 'features.feedback.title',
       descKey: 'features.feedback.desc',
     },
+    {
+      icon: '🏢',
+      titleKey: 'features.companies.title',
+      descKey: 'features.companies.desc',
+    },
   ];
 
   return (

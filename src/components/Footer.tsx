@@ -26,6 +26,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/companies" className="hover:text-white transition-colors">
+                  {t('footer.companies')}
+                </Link>
+              </li>
+              <li>
                 <Link href="/dashboard" className="hover:text-white transition-colors">
                   {t('footer.dashboard')}
                 </Link>
@@ -66,7 +71,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 pt-8 text-sm text-center text-slate-500">
-          {t('footer.copyright', { year: currentYear })}
+          <p>AI Interview Trainer is a trading name of <strong>PrepCraft LTD</strong>.</p>
+          <p className="mt-1">Registered in England and Wales. Company number: 17249290.</p>
+          <p className="mt-1">Registered office: 5 Brayford Square, London, E1 0SG, United Kingdom.</p>
+          <p className="mt-4">{t('footer.copyright', { year: currentYear })}</p>
         </div>
       </div>
     </footer>

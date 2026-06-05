@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import TelegramLoginButton from './TelegramLoginButton';
+import TelegramLoginPage from './TelegramLoginPage';
 
 export const metadata: Metadata = {
   title: 'Login — AI Interview Trainer',
@@ -33,24 +33,24 @@ export default function LoginPage() {
             Sign in with Telegram to access your interview dashboard.
           </p>
 
-          <TelegramLoginButton />
+          <TelegramLoginPage />
 
           <ol className="mt-8 text-left space-y-3 text-sm text-slate-400">
             <li className="flex gap-3">
               <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold">1</span>
-              Click the button above
+              Click the button to open Telegram bot
             </li>
             <li className="flex gap-3">
               <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold">2</span>
-              Open Telegram when prompted
-            </li>
-            <li className="flex gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold">3</span>
               Send <code className="px-1 py-0.5 rounded bg-white/10 text-emerald-300">/start</code> to the bot
             </li>
             <li className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold">3</span>
+              Copy the code from the bot&apos;s reply
+            </li>
+            <li className="flex gap-3">
               <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold">4</span>
-              Click the magic link you receive
+              Enter it below and click Sign in
             </li>
           </ol>
         </div>

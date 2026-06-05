@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <radialGradient id="glow1" cx="30%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.12"/>
+      <stop offset="60%" stop-color="#10b981" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="70%" cy="30%" r="45%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.08"/>
+      <stop offset="70%" stop-color="#34d399" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow3" cx="50%" cy="60%" r="40%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lineFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#10b981" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="particleBlur">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient glow orbs -->
+  <circle cx="240" cy="220" r="240" fill="url(#glow1)"/>
+  <circle cx="560" cy="180" r="200" fill="url(#glow2)"/>
+  <circle cx="400" cy="380" r="180" fill="url(#glow3)"/>
+
+  <!-- Subtle horizontal wave lines -->
+  <g opacity="0.08">
+    <path d="M0 300 Q100 280 200 300 Q300 320 400 300 Q500 280 600 300 Q700 320 800 300" stroke="#10b981" stroke-width="0.8" fill="none"/>
+    <path d="M0 320 Q100 310 200 320 Q300 330 400 320 Q500 310 600 320 Q700 330 800 320" stroke="#34d399" stroke-width="0.5" fill="none"/>
+    <path d="M0 340 Q100 335 200 340 Q300 345 400 340 Q500 335 600 340 Q700 345 800 340" stroke="#10b981" stroke-width="0.3" fill="none"/>
+  </g>
+
+  <!-- Top wave -->
+  <g opacity="0.06">
+    <path d="M0 100 Q120 80 240 100 Q360 120 480 100 Q600 80 720 100 L800 100" stroke="#34d399" stroke-width="0.6" fill="none"/>
+  </g>
+
+  <!-- Scattered small dots (particles) -->
+  <g filter="url(#particleBlur)">
+    <circle cx="120" cy="140" r="2" fill="#10b981" opacity="0.5">
+      <animate attributeName="opacity" values="0.5;0.15;0.5" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="680" cy="160" r="2.5" fill="#34d399" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="300" cy="130" r="1.5" fill="#10b981" opacity="0.35">
+      <animate attributeName="opacity" values="0.35;0.05;0.35" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="250" r="2" fill="#34d399" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.08;0.3" dur="4.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="180" cy="350" r="1.5" fill="#10b981" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="620" cy="340" r="2" fill="#10b981" opacity="0.35">
+      <animate attributeName="opacity" values="0.35;0.05;0.35" dur="3.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="450" cy="120" r="1.5" fill="#34d399" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.1;0.3" dur="4.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="700" cy="270" r="1.5" fill="#10b981" opacity="0.25">
+      <animate attributeName="opacity" values="0.25;0.05;0.25" dur="5.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="270" r="2" fill="#34d399" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="380" cy="380" r="1" fill="#10b981" opacity="0.35">
+      <animate attributeName="opacity" values="0.35;0.05;0.35" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="200" r="1.5" fill="#34d399" opacity="0.2">
+      <animate attributeName="opacity" values="0.2;0.05;0.2" dur="4.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="760" cy="200" r="1.5" fill="#10b981" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.08;0.3" dur="3.7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Fine connecting lines between particles -->
+  <g opacity="0.06">
+    <line x1="120" y1="140" x2="300" y2="130" stroke="#10b981" stroke-width="0.5"/>
+    <line x1="300" y1="130" x2="450" y2="120" stroke="#34d399" stroke-width="0.5"/>
+    <line x1="450" y1="120" x2="680" y2="160" stroke="#10b981" stroke-width="0.3"/>
+    <line x1="120" y1="140" x2="180" y2="350" stroke="#10b981" stroke-width="0.3"/>
+    <line x1="180" y1="350" x2="380" y2="380" stroke="#34d399" stroke-width="0.3"/>
+    <line x1="380" y1="380" x2="620" y2="340" stroke="#10b981" stroke-width="0.3"/>
+    <line x1="550" y1="250" x2="700" y2="270" stroke="#34d399" stroke-width="0.3"/>
+  </g>
+
+  <!-- Bottom subtle glow accent -->
+  <g opacity="0.05">
+    <ellipse cx="400" cy="520" rx="350" ry="30" fill="#10b981"/>
+  </g>
+</svg>

@@ -1,0 +1,3 @@
+{
+  "/api/dashboard/resumes/download-pdf/route": "app/api/dashboard/resumes/download-pdf/route.js"
+}
