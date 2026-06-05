@@ -1,8 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, ListChecks, UserCircle, Smartphone, ExternalLink, Bot, LogOut, X, House } from 'lucide-react';
+import { LayoutDashboard, ListChecks, UserCircle, Smartphone, ExternalLink, Bot, LogOut, X, House, Building2, FileText } from 'lucide-react';
 import { MINI_APP_WEB_URL, MINI_APP_URL, LANDING_URL } from '@/lib/constants';
 import { useTranslation } from '@/lib/i18n';
 
@@ -15,12 +16,26 @@ interface DashboardSidebarProps {
 export default function DashboardSidebar({ isOpen, onClose, onLogout }: DashboardSidebarProps) {
   const pathname = usePathname();
   const { t } = useTranslation();
+  const [isPremium, setIsPremium] = useState(false);
+  const [planLoaded, setPlanLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/dashboard/profile')
+      .then((r) => r.json())
+      .then((data) => {
+        setIsPremium(data.subscription?.plan_name === 'Premium');
+        setPlanLoaded(true);
+      })
+      .catch(() => setPlanLoaded(true));
+  }, []);
 
   const navLinks = [
     { href: '/dashboard', icon: LayoutDashboard, label: t('dashboard.home') },
     { href: '/dashboard/interviews', icon: ListChecks, label: t('dashboard.my_interviews') },
     { href: '/dashboard/profile', icon: UserCircle, label: t('dashboard.profile') },
-  ];
+    { href: '/dashboard/companies', icon: Building2, label: t('dashboard.companies'), premium: true },
+    { href: '/dashboard/resumes', icon: FileText, label: t('dashboard.resumes') },
+  ].filter(l => !l.premium || isPremium);
 
   return (
     <>
@@ -88,18 +103,7 @@ export default function DashboardSidebar({ isOpen, onClose, onLogout }: Dashboar
             );
           })}
 
-          {/* Ссылка на главную лендинга */}
-          <a
-            href={LANDING_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors text-sm text-white/70 hover:bg-blue-600/20 hover:text-blue-400"
-          >
-            <House className="w-5 h-5 shrink-0" />
-            <span className="truncate md:hidden lg:block">techinterviewai.com</span>
-            <ExternalLink className="w-3 h-3 ml-auto opacity-50 md:hidden lg:block" />
-          </a>
-
+          {/* Web App */}
           <a
             href={MINI_APP_WEB_URL}
             target="_blank"

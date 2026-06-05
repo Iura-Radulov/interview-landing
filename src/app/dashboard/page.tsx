@@ -17,6 +17,7 @@ interface Stats {
     started_at: string;
     role: string;
     experience_level: string;
+    mode: string;
     total_score: number | null;
     completed: boolean;
   }>;
@@ -33,8 +34,8 @@ function formatDate(dateStr: string, locale: string) {
 
 function scoreColor(score: number | null | undefined) {
   if (score == null) return 'text-gray-400';
-  if (score >= 75) return 'text-green-600';
-  if (score >= 50) return 'text-yellow-600';
+  if (score >= 7) return 'text-green-600';
+  if (score >= 5) return 'text-yellow-600';
   return 'text-red-600';
 }
 
@@ -79,7 +80,7 @@ export default function DashboardPage() {
   }
 
   const avgScoreColor =
-    stats?.avgScore == null ? 'gray' as const : stats.avgScore >= 75 ? 'green' as const : stats.avgScore >= 50 ? 'yellow' as const : 'red' as const;
+    stats?.avgScore == null ? 'gray' as const : stats.avgScore >= 7 ? 'green' as const : stats.avgScore >= 5 ? 'yellow' as const : 'red' as const;
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -132,6 +133,7 @@ export default function DashboardPage() {
               <thead>
                 <tr className="border-b border-gray-100">
                   <th className="text-left py-2 pr-4 font-medium text-gray-500">{t('dashboard.date_role')}</th>
+                  <th className="text-left py-2 pr-4 font-medium text-gray-500">{t('dashboard.mode')}</th>
                   <th className="text-left py-2 pr-4 font-medium text-gray-500">{t('dashboard.level')}</th>
                   <th className="text-left py-2 font-medium text-gray-500">{t('dashboard.score')}</th>
                 </tr>
@@ -142,6 +144,13 @@ export default function DashboardPage() {
                     <td className="py-3 pr-4">
                       <p className="font-medium text-gray-900 capitalize">{s.role}</p>
                       <p className="text-xs text-gray-500">{formatDate(s.started_at, uiLang)}</p>
+                    </td>
+                    <td className="py-3 pr-4">
+                      <span className="inline-flex items-center gap-1 text-xs font-medium text-gray-600">
+                        {s.mode === 'behavioral' ? '🧠' : s.mode === 'system_design' ? '🏗️' : '💻'}
+                        {' '}
+                        {t(`dashboard.mode_${s.mode || 'technical'}`)}
+                      </span>
                     </td>
                     <td className="py-3 pr-4 text-gray-600 capitalize">{s.experience_level}</td>
                     <td className={`py-3 font-semibold ${scoreColor(s.total_score)}`}>

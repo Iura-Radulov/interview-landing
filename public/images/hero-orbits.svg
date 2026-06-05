@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <radialGradient id="leftGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.15"/>
+      <stop offset="60%" stop-color="#10b981" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rightGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.12"/>
+      <stop offset="60%" stop-color="#34d399" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.98"/>
+    </linearGradient>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="nodeGlow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Subtle center ambient -->
+  <circle cx="400" cy="280" r="220" fill="url(#coreGlow)"/>
+
+  <!-- ===== LEFT CLUSTER ===== -->
+  <circle cx="120" cy="250" r="140" fill="url(#leftGlow)"/>
+
+  <!-- Left orbit ring -->
+  <circle cx="120" cy="250" r="90" fill="none" stroke="#10b981" stroke-width="0.8" stroke-dasharray="3 6" opacity="0.25">
+    <animateTransform attributeName="transform" type="rotate" from="0 120 250" to="360 120 250" dur="25s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="120" cy="250" r="110" fill="none" stroke="#34d399" stroke-width="0.4" stroke-dasharray="2 10" opacity="0.12">
+    <animateTransform attributeName="transform" type="rotate" from="360 120 250" to="0 120 250" dur="35s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Left core -->
+  <circle cx="120" cy="250" r="22" fill="url(#nodeGrad)" stroke="#10b981" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="120" cy="250" r="14" fill="none" stroke="#34d399" stroke-width="0.6" opacity="0.3"/>
+  <circle cx="120" cy="250" r="4" fill="#34d399" opacity="0.7"/>
+
+  <!-- Left orbiting nodes -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 120 250" to="360 120 250" dur="18s" repeatCount="indefinite"/>
+    <g transform="translate(120, 160)">
+      <circle cx="0" cy="0" r="10" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+      <path d="M-3 1 Q0 -4 3 1" stroke="#34d399" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="-2" r="2" fill="#34d399" opacity="0.8"/>
+    </g>
+  </g>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="120 120 250" to="480 120 250" dur="22s" repeatCount="indefinite"/>
+    <g transform="translate(200, 280)">
+      <circle cx="0" cy="0" r="8" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <path d="M-2 1 Q0 -3 2 1" stroke="#34d399" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="-1.5" r="1.5" fill="#34d399" opacity="0.7"/>
+    </g>
+  </g>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="240 120 250" to="600 120 250" dur="20s" repeatCount="indefinite"/>
+    <g transform="translate(50, 320)">
+      <circle cx="0" cy="0" r="9" fill="#1e293b" stroke="#34d399" stroke-width="1.2"/>
+      <path d="M-2.5 1 Q0 -3.5 2.5 1" stroke="#10b981" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="-2" r="2" fill="#10b981" opacity="0.8"/>
+    </g>
+  </g>
+
+  <!-- ===== RIGHT CLUSTER ===== -->
+  <circle cx="680" cy="200" r="140" fill="url(#rightGlow)"/>
+
+  <!-- Right orbit ring -->
+  <circle cx="680" cy="200" r="85" fill="none" stroke="#34d399" stroke-width="0.8" stroke-dasharray="3 6" opacity="0.25">
+    <animateTransform attributeName="transform" type="rotate" from="360 680 200" to="0 680 200" dur="28s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="680" cy="200" r="105" fill="none" stroke="#10b981" stroke-width="0.4" stroke-dasharray="2 10" opacity="0.12">
+    <animateTransform attributeName="transform" type="rotate" from="0 680 200" to="360 680 200" dur="38s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Right core -->
+  <circle cx="680" cy="200" r="18" fill="url(#nodeGrad)" stroke="#34d399" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="680" cy="200" r="11" fill="none" stroke="#10b981" stroke-width="0.6" opacity="0.3"/>
+  <circle cx="680" cy="200" r="3.5" fill="#10b981" opacity="0.7"/>
+
+  <!-- Right orbiting nodes -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="90 680 200" to="450 680 200" dur="16s" repeatCount="indefinite"/>
+    <g transform="translate(680, 115)">
+      <circle cx="0" cy="0" r="9" fill="#1e293b" stroke="#34d399" stroke-width="1.2"/>
+      <path d="M-2.5 1 Q0 -3.5 2.5 1" stroke="#10b981" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="-2" r="2" fill="#10b981" opacity="0.8"/>
+    </g>
+  </g>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="210 680 200" to="570 680 200" dur="24s" repeatCount="indefinite"/>
+    <g transform="translate(760, 230)">
+      <circle cx="0" cy="0" r="7" fill="#1e293b" stroke="#34d399" stroke-width="1"/>
+      <path d="M-2 0 Q0 -3 2 0" stroke="#10b981" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="-1.5" r="1.5" fill="#10b981" opacity="0.7"/>
+    </g>
+  </g>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="330 680 200" to="690 680 200" dur="19s" repeatCount="indefinite"/>
+    <g transform="translate(610, 270)">
+      <circle cx="0" cy="0" r="8" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <path d="M-2 1 Q0 -3 2 1" stroke="#34d399" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="-1.5" r="1.5" fill="#34d399" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- ===== BOTTOM-CENTER SMALL CLUSTER ===== -->
+  <circle cx="400" cy="420" r="50" fill="url(#coreGlow)"/>
+  <circle cx="400" cy="420" r="35" fill="none" stroke="#10b981" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.15">
+    <animateTransform attributeName="transform" type="rotate" from="0 400 420" to="360 400 420" dur="30s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="400" cy="420" r="5" fill="#1e293b" stroke="#10b981" stroke-width="1" opacity="0.5"/>
+  <circle cx="400" cy="420" r="2" fill="#34d399" opacity="0.4"/>
+
+  <!-- ===== CONNECTING LINES ===== -->
+  <g opacity="0.07">
+    <!-- Left to right -->
+    <path d="M210 280 Q300 200 400 220 Q500 240 595 230" stroke="#10b981" stroke-width="0.8" fill="none" stroke-dasharray="4 6"/>
+    <path d="M200 310 Q300 350 400 320 Q500 290 600 280" stroke="#34d399" stroke-width="0.5" fill="none" stroke-dasharray="3 8"/>
+    <!-- Left to bottom -->
+    <path d="M160 330 Q250 380 350 410" stroke="#10b981" stroke-width="0.4" fill="none" stroke-dasharray="2 6" opacity="0.5"/>
+    <!-- Right to bottom -->
+    <path d="M630 270 Q530 350 450 400" stroke="#34d399" stroke-width="0.4" fill="none" stroke-dasharray="2 6" opacity="0.5"/>
+  </g>
+
+  <!-- ===== FLOATING PARTICLES ===== -->
+  <g filter="url(#nodeGlow)">
+    <!-- Top area -->
+    <circle cx="200" cy="100" r="1.5" fill="#10b981" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="600" cy="90" r="1.5" fill="#34d399" opacity="0.35">
+      <animate attributeName="opacity" values="0.35;0.05;0.35" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="70" r="1" fill="#10b981" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.08;0.3" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Side particles -->
+    <circle cx="80" cy="120" r="1.5" fill="#34d399" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.05;0.3" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="730" cy="120" r="1" fill="#10b981" opacity="0.25">
+      <animate attributeName="opacity" values="0.25;0.05;0.25" dur="4.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Bottom -->
+    <circle cx="280" cy="480" r="1.5" fill="#10b981" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="520" cy="470" r="1" fill="#34d399" opacity="0.25">
+      <animate attributeName="opacity" values="0.25;0.05;0.25" dur="4.2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Bottom subtle wave -->
+  <g opacity="0.04">
+    <path d="M0 500 Q150 485 300 495 Q450 505 600 490 Q700 480 800 490" stroke="#10b981" stroke-width="1" fill="none"/>
+  </g>
+</svg>

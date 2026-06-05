@@ -74,7 +74,7 @@ export default function TariffCard({ plan, highlighted = false }: TariffCardProp
         <h3
           className={`text-xl font-bold mb-2 ${highlighted ? 'text-white' : 'text-slate-900'}`}
         >
-          {plan.name}
+          {t(`plans.${plan.name}`, { defaultValue: plan.name })}
         </h3>
         <div className="flex items-baseline gap-1">
           <span

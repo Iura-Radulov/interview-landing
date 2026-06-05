@@ -28,6 +28,12 @@ export default function LandingNav() {
     { href: '/about', label: t('nav.about') },
   ];
 
+  function handleSetLang(lang: 'en' | 'ru') {
+    setUiLang(lang);
+    setLangOpen(false);
+    document.documentElement.setAttribute('lang', lang);
+  }
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50"
     style={{ background: 'linear-gradient(135deg, #0f172a 0%, #020617 100%)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
@@ -69,26 +75,27 @@ export default function LandingNav() {
               {t('nav.web_app')} <span className="text-xs opacity-50">↗</span>
             </a>
 
-            {/* Language switcher */}
+            {/* Desktop language switcher */}
             <div className="relative">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                className="flex items-center gap-1 text-xs text-slate-300 hover:text-white hover:bg-white/10 px-2 py-1 rounded-lg transition-colors"
                 aria-label="Switch language"
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-3.5 h-3.5" />
                 <span className="font-medium text-xs">{uiLang === 'en' ? 'EN' : 'RU'}</span>
               </button>
 
+              {/* Desktop language dropdown */}
               {langOpen && (
                 <>
                   <div
                     className="fixed inset-0 z-10"
                     onClick={() => setLangOpen(false)}
                   />
-                  <div className="absolute right-0 mt-2 w-36 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-20">
+                  <div className="absolute right-0 top-full mt-2 z-20 w-36 bg-white rounded-lg shadow-lg border border-gray-100 py-1">
                     <button
-                      onClick={() => { setUiLang('en'); setLangOpen(false); document.documentElement.setAttribute('lang', 'en'); }}
+                      onClick={() => handleSetLang('en')}
                       className={`w-full text-left px-4 py-2 text-sm transition-colors ${
                         uiLang === 'en' ? 'text-emerald-600 font-medium bg-emerald-50' : 'text-gray-700 hover:bg-gray-50'
                       }`}
@@ -96,7 +103,7 @@ export default function LandingNav() {
                       {t('lang.en')}
                     </button>
                     <button
-                      onClick={() => { setUiLang('ru'); setLangOpen(false); document.documentElement.setAttribute('lang', 'ru'); }}
+                      onClick={() => handleSetLang('ru')}
                       className={`w-full text-left px-4 py-2 text-sm transition-colors ${
                         uiLang === 'ru' ? 'text-emerald-600 font-medium bg-emerald-50' : 'text-gray-700 hover:bg-gray-50'
                       }`}
@@ -131,16 +138,14 @@ export default function LandingNav() {
 
           {/* Mobile hamburger */}
           <div className="flex md:hidden items-center gap-3">
-            <div className="relative">
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1 text-xs text-slate-300 hover:text-white hover:bg-white/10 px-2 py-1 rounded-lg transition-colors"
-                aria-label="Switch language"
-              >
-                <Globe className="w-3.5 h-3.5" />
-                <span className="font-medium text-xs">{uiLang === 'en' ? 'EN' : 'RU'}</span>
-              </button>
-            </div>
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="flex items-center gap-1 text-xs text-slate-300 hover:text-white hover:bg-white/10 px-2 py-1 rounded-lg transition-colors"
+              aria-label="Switch language"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <span className="font-medium text-xs">{uiLang === 'en' ? 'EN' : 'RU'}</span>
+            </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="text-white/70 hover:text-white"
@@ -151,6 +156,34 @@ export default function LandingNav() {
           </div>
         </div>
       </div>
+
+      {/* Language dropdown — mobile only */}
+      {langOpen && (
+        <div className="md:hidden">
+          <div
+            className="fixed inset-0 z-10"
+            onClick={() => setLangOpen(false)}
+          />
+          <div className="fixed right-4 top-14 z-20 w-36 bg-white rounded-lg shadow-lg border border-gray-100 py-1">
+            <button
+              onClick={() => handleSetLang('en')}
+              className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                uiLang === 'en' ? 'text-emerald-600 font-medium bg-emerald-50' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {t('lang.en')}
+            </button>
+            <button
+              onClick={() => handleSetLang('ru')}
+              className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                uiLang === 'ru' ? 'text-emerald-600 font-medium bg-emerald-50' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {t('lang.ru')}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Mobile menu */}
       {mobileOpen && (

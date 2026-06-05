@@ -14,6 +14,7 @@ export interface InterviewSession {
   user_id: number;
   role: string;
   experience_level: string;
+  mode: string;
   started_at: string;
   completed: boolean;
   total_score?: number;
@@ -35,7 +36,11 @@ export interface Subscription {
 
 export interface UserStats {
   totalInterviews: number;
+  completedInterviews: number;
   avgScore: number | null;
+  interviewsThisMonth: number;
+  completedThisMonth: number;
+  avgScoreThisMonth: number | null;
   sessionsThisWeek: number;
   currentPlan: { name: string; features: string[] } | null;
   recentSessions: InterviewSession[];

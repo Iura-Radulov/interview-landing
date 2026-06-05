@@ -42,6 +42,15 @@ export function getUserByTelegramId(telegramId: number): User | null {
   return row ?? null;
 }
 
+export function createUser(telegramId: number, username: string | null, firstName: string | null): User {
+  const db = getDb();
+  const stmt = db.prepare(
+    'INSERT INTO users (telegram_id, username, first_name, created_at) VALUES (?, ?, ?, datetime(\'now\'))'
+  );
+  stmt.run(telegramId, username, firstName);
+  return getUserByTelegramId(telegramId)!;
+}
+
 export function getActiveTariffs(): TariffPlan[] {
   const stmt = getDb().prepare(
     'SELECT id, name, price, duration_days, features, features_ru, max_interviews_per_day, is_active, created_at, updated_at FROM tariff_plans WHERE is_active = 1 ORDER BY price ASC'
@@ -79,11 +88,15 @@ export function getUserStats(telegramId: number): UserStats {
   const db = getDb();
   const user = db.prepare('SELECT id FROM users WHERE telegram_id = ?').get(telegramId) as { id: number } | undefined;
   if (!user) {
-    return { totalInterviews: 0, avgScore: null, sessionsThisWeek: 0, currentPlan: null, recentSessions: [] };
+    return { totalInterviews: 0, completedInterviews: 0, avgScore: null, sessionsThisWeek: 0, currentPlan: null, recentSessions: [], interviewsThisMonth: 0, completedThisMonth: 0, avgScoreThisMonth: null };
   }
 
   const { count: totalInterviews } = db
     .prepare('SELECT COUNT(*) as count FROM sessions WHERE user_id = ?')
+    .get(user.id) as { count: number };
+
+  const { count: completedInterviews } = db
+    .prepare('SELECT COUNT(*) as count FROM sessions WHERE user_id = ? AND completed = 1')
     .get(user.id) as { count: number };
 
   const { avg } = db
@@ -93,6 +106,18 @@ export function getUserStats(telegramId: number): UserStats {
   const { count: sessionsThisWeek } = db
     .prepare("SELECT COUNT(*) as count FROM sessions WHERE user_id = ? AND started_at >= datetime('now', '-7 days')")
     .get(user.id) as { count: number };
+
+  const { count: interviewsThisMonth } = db
+    .prepare("SELECT COUNT(*) as count FROM sessions WHERE user_id = ? AND started_at >= datetime('now', '-30 days')")
+    .get(user.id) as { count: number };
+
+  const { count: completedThisMonth } = db
+    .prepare("SELECT COUNT(*) as count FROM sessions WHERE user_id = ? AND completed = 1 AND started_at >= datetime('now', '-30 days')")
+    .get(user.id) as { count: number };
+
+  const { avg: avgScoreThisMonth } = db
+    .prepare("SELECT AVG(total_score) as avg FROM sessions WHERE user_id = ? AND completed = 1 AND total_score IS NOT NULL AND started_at >= datetime('now', '-30 days')")
+    .get(user.id) as { avg: number | null };
 
   const rawSessions = db
     .prepare('SELECT * FROM sessions WHERE user_id = ? ORDER BY started_at DESC LIMIT 5')
@@ -107,7 +132,11 @@ export function getUserStats(telegramId: number): UserStats {
 
   return {
     totalInterviews,
+    completedInterviews,
     avgScore: avg,
+    interviewsThisMonth,
+    completedThisMonth,
+    avgScoreThisMonth,
     sessionsThisWeek,
     currentPlan: subscription ? { name: subscription.plan_name, features: subscription.features } : null,
     recentSessions,
@@ -157,9 +186,62 @@ export function getUserSubscription(telegramId: number): Subscription | null {
     .get(user.id) as (Omit<Subscription, 'features' | 'features_ru' | 'payment_type'> & { features: string; features_ru: string | null; payment_type: string | null }) | undefined;
 
   if (!row) return null;
+
+  // Parse features: handle both JSON array and comma-separated string formats
+  function parseFeatures(val: string | null): string[] {
+    if (!val) return [];
+    try {
+      const parsed = JSON.parse(val);
+      return Array.isArray(parsed) ? parsed : typeof parsed === 'string' ? parsed.split(',').map((s: string) => s.trim()).filter(Boolean) : [];
+    } catch {
+      return val.split(',').map((s) => s.trim()).filter(Boolean);
+    }
+  }
+
   return {
     ...row,
-    features: JSON.parse(row.features || '[]'),
-    features_ru: row.features_ru ? JSON.parse(row.features_ru) : null,
+    features: parseFeatures(row.features),
+    features_ru: row.features_ru ? parseFeatures(row.features_ru) : null,
   };
+}
+
+// ── Company Sets ──────────────────────────────────────────────────────────
+
+export interface CompanySetRow {
+  slug: string;
+  name_en: string;
+  name_ru: string;
+  emoji: string | null;
+  is_free: number;
+}
+
+export function getCompanySets(): CompanySetRow[] {
+  return getDb()
+    .prepare(
+      "SELECT slug, name_en, name_ru, emoji, is_free FROM company_sets WHERE is_active = 1 ORDER BY sort_order"
+    )
+    .all() as CompanySetRow[];
+}
+
+// ── User Companies ────────────────────────────────────────────────────────
+
+export interface UserCompany {
+  id: number;
+  company_name: string;
+  vacancy_url: string;
+  position: string;
+  ai_context: string;
+  created_at: string;
+}
+
+export function getUserCompanies(telegramId: number): UserCompany[] {
+  const user = getDb()
+    .prepare('SELECT id FROM users WHERE telegram_id = ?')
+    .get(telegramId) as { id: number } | undefined;
+  if (!user) return [];
+  return getDb()
+    .prepare(
+      'SELECT id, company_name, vacancy_url, position, ai_context, created_at FROM user_companies WHERE user_id = ? ORDER BY created_at DESC'
+    )
+    .all(user.id) as UserCompany[];
 }
