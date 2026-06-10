@@ -32,7 +32,7 @@ export default function LandingFeatures() {
       descKey: 'features.behavioral.desc',
     },
     {
-      icon: '📊',
+      icon: '📚',
       titleKey: 'features.tracking.title',
       descKey: 'features.tracking.desc',
     },
