@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#bg2)" rx="16"/>
+
+  <g transform="translate(40, 30)">
+    <!-- AI Interviewer header -->
+    <rect x="0" y="0" width="560" height="50" rx="12" fill="#1e293b"/>
+    <circle cx="20" cy="25" r="8" fill="#10b981"/>
+    <text x="36" y="30" font-family="sans-serif" font-weight="600" font-size="15" fill="#e2e8f0">AI Interviewer — Behavioral Mode</text>
+    <text x="520" y="30" text-anchor="end" font-family="sans-serif" font-size="12" fill="#64748b">Q 2 / 5</text>
+
+    <!-- Question -->
+    <rect x="0" y="70" width="560" height="80" rx="12" fill="#334155"/>
+    <text x="20" y="100" font-family="sans-serif" font-size="17" fill="#e2e8f0">Tell me about a time you had a conflict with a</text>
+    <text x="20" y="125" font-family="sans-serif" font-size="17" fill="#e2e8f0">teammate. How did you resolve it?</text>
+    <text x="520" y="140" text-anchor="end" font-family="sans-serif" font-size="11" fill="#64748b">STAR method recommended</text>
+
+    <!-- Voice button -->
+    <rect x="0" y="170" width="130" height="36" rx="18" fill="#059669"/>
+    <text x="18" y="193" font-family="sans-serif" font-size="14" fill="white">🎤 Record</text>
+
+    <rect x="145" y="170" width="120" height="36" rx="18" fill="#334155"/>
+    <text x="160" y="193" font-family="sans-serif" font-size="14" fill="#e2e8f0">⌨️ Type</text>
+
+    <!-- Answer area -->
+    <rect x="0" y="225" width="560" height="120" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="260" font-family="sans-serif" font-size="14" fill="#64748b">In my previous role as a Senior Frontend Engineer at a fintech startup...</text>
+    <text x="20" y="285" font-family="sans-serif" font-size="14" fill="#64748b">Situation: We were migrating from a monolithic codebase to microservices.</text>
+    <text x="20" y="310" font-family="sans-serif" font-size="14" fill="#64748b">Task: I needed to ensure both the legacy system and the new microservices...</text>
+
+    <!-- Submit -->
+    <rect x="440" y="225" width="120" height="40" rx="20" fill="#10b981"/>
+    <text x="500" y="250" text-anchor="middle" font-family="sans-serif" font-weight="600" font-size="14" fill="white">Send →</text>
+
+    <!-- Timer -->
+    <text x="20" y="380" font-family="sans-serif" font-size="13" fill="#fbbf24">⏱ 2:45 remaining</text>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="300" height="300" fill="url(#bg)" rx="60"/>
+
+  <!-- Subtle glow behind icon -->
+  <circle cx="150" cy="130" r="80" fill="url(#glow)"/>
+
+  <!-- Chat bubble icon -->
+  <path d="M150 60c-38 0-70 26-70 60 0 19 10 36 26 48l-7 28 30-16c7 2 14 3 21 3 38 0 70-26 70-60s-32-63-70-63z" fill="url(#grad)" opacity="0.95"/>
+
+  <!-- Brain/AI circuit lines inside bubble -->
+  <circle cx="150" cy="120" r="16" fill="none" stroke="white" stroke-width="2.5" opacity="0.9"/>
+  <path d="M140 120l-8-12M140 120l-8 12M160 120l8-12M160 120l8 12" stroke="white" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+  <path d="M150 104v-8M150 136v8" stroke="white" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+
+  <!-- AI Text -->
+  <text x="150" y="215" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="64" fill="white" letter-spacing="2">AI</text>
+
+  <!-- Small subtitle -->
+  <text x="150" y="240" text-anchor="middle" font-family="sans-serif" font-weight="400" font-size="12" fill="#94a3b8" letter-spacing="1">INTERVIEW TRAINER</text>
+</svg>

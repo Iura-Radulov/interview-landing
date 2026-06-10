@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#bg3)" rx="16"/>
+
+  <g transform="translate(40, 30)">
+    <!-- Score header -->
+    <text x="280" y="30" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="18" fill="#e2e8f0">Interview Complete!</text>
+
+    <!-- Big score circle -->
+    <circle cx="280" cy="120" r="65" fill="none" stroke="#1e293b" stroke-width="8"/>
+    <circle cx="280" cy="120" r="65" fill="none" stroke="url(#gold)" stroke-width="8" stroke-dasharray="340" stroke-dashoffset="85"/>
+    <text x="280" y="115" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="36" fill="#fbbf24">73</text>
+    <text x="280" y="138" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#64748b">/ 100</text>
+
+    <!-- Per-question breakdown -->
+    <text x="0" y="210" font-family="sans-serif" font-weight="600" font-size="14" fill="#94a3b8">Per-Question Breakdown</text>
+
+    <g transform="translate(0, 225)">
+      <text font-family="sans-serif" font-size="13" fill="#e2e8f0">Q1. Explain React Virtual DOM</text>
+      <rect x="0" y="18" width="560" height="6" rx="3" fill="#1e293b"/>
+      <rect x="0" y="18" width="476" height="6" rx="3" fill="#10b981"/>
+      <text x="520" y="16" text-anchor="end" font-family="sans-serif" font-weight="600" font-size="13" fill="#10b981">8.5/10</text>
+    </g>
+
+    <g transform="translate(0, 265)">
+      <text font-family="sans-serif" font-size="13" fill="#e2e8f0">Q2. Conflict resolution (STAR)</text>
+      <rect x="0" y="18" width="560" height="6" rx="3" fill="#1e293b"/>
+      <rect x="0" y="18" width="392" height="6" rx="3" fill="#fbbf24"/>
+      <text x="520" y="16" text-anchor="end" font-family="sans-serif" font-weight="600" font-size="13" fill="#fbbf24">7.0/10</text>
+    </g>
+
+    <g transform="translate(0, 305)">
+      <text font-family="sans-serif" font-size="13" fill="#e2e8f0">Q3. Design a URL shortener</text>
+      <rect x="0" y="18" width="560" height="6" rx="3" fill="#1e293b"/>
+      <rect x="0" y="18" width="308" height="6" rx="3" fill="#f87171"/>
+      <text x="520" y="16" text-anchor="end" font-family="sans-serif" font-weight="600" font-size="13" fill="#f87171">5.5/10</text>
+    </g>
+
+    <!-- Recommendations -->
+    <rect x="0" y="350" width="270" height="90" rx="12" fill="#1e293b"/>
+    <text x="15" y="375" font-family="sans-serif" font-weight="600" font-size="13" fill="#10b981">✅ Strengths</text>
+    <text x="15" y="395" font-family="sans-serif" font-size="12" fill="#94a3b8">• Strong React fundamentals</text>
+    <text x="15" y="412" font-family="sans-serif" font-size="12" fill="#94a3b8">• Clear STAR structure</text>
+
+    <rect x="290" y="350" width="270" height="90" rx="12" fill="#1e293b"/>
+    <text x="305" y="375" font-family="sans-serif" font-weight="600" font-size="13" fill="#fbbf24">📈 Areas to Improve</text>
+    <text x="305" y="395" font-family="sans-serif" font-size="12" fill="#94a3b8">• System Design: practice caching</text>
+    <text x="305" y="412" font-family="sans-serif" font-size="12" fill="#94a3b8">• Add metrics to STAR results</text>
+  </g>
+</svg>

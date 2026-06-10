@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#020617"/>
+      <stop offset="100%" stop-color="#0c0a1a"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="glow1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glow2" x1="100%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="neonGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1584" height="396" fill="url(#bg)"/>
+
+  <!-- Decorative glow orbs -->
+  <circle cx="200" cy="100" r="250" fill="url(#glow1)"/>
+  <circle cx="1400" cy="350" r="300" fill="url(#glow2)"/>
+
+  <!-- Abstract grid pattern -->
+  <g opacity="0.03" stroke="white" stroke-width="0.5">
+    <line x1="0" y1="0" x2="1584" y2="0"/>
+    <line x1="0" y1="132" x2="1584" y2="132"/>
+    <line x1="0" y1="264" x2="1584" y2="264"/>
+    <line x1="396" y1="0" x2="396" y2="396"/>
+    <line x1="792" y1="0" x2="792" y2="396"/>
+    <line x1="1188" y1="0" x2="1188" y2="396"/>
+  </g>
+
+  <!-- Decorative code/tech lines -->
+  <g opacity="0.05" stroke="#10b981" stroke-width="2" fill="none">
+    <path d="M0 360 Q 100 340 200 360 T 400 360 T 600 360"/>
+  </g>
+
+  <!-- Left section: Logo area -->
+  <g transform="translate(80, 50)">
+    <!-- Logo square -->
+    <rect x="0" y="0" width="100" height="100" rx="20" fill="url(#accent1)"/>
+    <text x="50" y="68" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="44" fill="white">AI</text>
+  </g>
+
+  <!-- Main title -->
+  <text x="220" y="140" font-family="sans-serif" font-weight="800" font-size="56" fill="white" letter-spacing="-0.5">AI Interview Trainer</text>
+
+  <!-- Tagline -->
+  <text x="220" y="185" font-family="sans-serif" font-weight="400" font-size="22" fill="#94a3b8">AI-powered mock interviews for developers. Technical &amp; Behavioral (STAR). Voice support.</text>
+
+  <!-- CTA Tag -->
+  <rect x="220" y="210" width="180" height="36" rx="18" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.8"/>
+  <text x="310" y="233" text-anchor="middle" font-family="sans-serif" font-weight="600" font-size="14" fill="#34d399">Start free → techinterviewai.com</text>
+
+  <!-- Right side: Decorative code elements -->
+  <g transform="translate(1050, 100)" opacity="0.15">
+    <rect x="0" y="0" width="420" height="180" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <g font-family="monospace" font-size="13" fill="#64748b">
+      <text x="20" y="30">1  <tspan fill="#10b981">import</tspan> { InterviewAI } <tspan fill="#10b981">from</tspan> <tspan fill="#e2e8f0">'@prepcraft/trainer'</tspan></text>
+      <text x="20" y="55">2</text>
+      <text x="20" y="80">3  <tspan fill="#10b981">const</tspan> interview = <tspan fill="#fbbf24">new</tspan> InterviewAI({</text>
+      <text x="40" y="105">role: <tspan fill="#e2e8f0">'Senior Frontend'</tspan>,</text>
+      <text x="40" y="130">level: <tspan fill="#e2e8f0">'Senior'</tspan>,</text>
+      <text x="40" y="155">mode: <tspan fill="#e2e8f0">'behavioral'</tspan></text>
+      <text x="20" y="180">})</text>
+    </g>
+  </g>
+
+  <!-- Bottom right: PrepCraft branding -->
+  <text x="1540" y="375" text-anchor="end" font-family="sans-serif" font-weight="500" font-size="11" fill="#475569" letter-spacing="1.5">PREPCRAFT LTD</text>
+</svg>

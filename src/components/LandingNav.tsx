@@ -25,6 +25,7 @@ export default function LandingNav() {
 
   const navLinks = [
     { href: '/tariffs', label: t('nav.plans') },
+    { href: '/blog', label: t('nav.blog') },
     { href: '/about', label: t('nav.about') },
   ];
 
