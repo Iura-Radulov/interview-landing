@@ -390,7 +390,6 @@ The best way to master React interviews is **deliberate practice**. Use [AI Inte
 - Practice in **Technical** or **Behavioral** mode
 - Record **voice answers** for a realistic interview experience
 
-[Start free practice →](https://t.me/developing_interview_trainer_bot)
 `,
   },
   {
@@ -637,34 +636,34 @@ The STAR method forces you to tell a complete story. Interviewers are evaluating
 **Weak answer:** "I had a disagreement with a teammate but we resolved it."
 
 **STAR answer:**
-> **Situation:** At my previous company, our engineering team was split between building a new feature (my team) and fixing critical tech debt (another team). Both projects had the same deadline.
->
-> **Task:** As the lead engineer, I needed to ensure both deliverables were met without burning out the team.
->
-> **Action:** I proposed a compromise: we'd allocate 3 days to the feature and 2 days to tech debt each sprint. I organized a cross-team meeting where each side presented their priorities with data. We agreed on an MVP scope for the feature and a must-fix list for tech debt. I also introduced a shared Jira board so both teams could see dependencies.
->
-> **Result:** Both deliverables shipped on time. The feature launched with 95% of planned functionality, and the critical tech debt was reduced by 60%. The two teams started doing joint sprint planning, which reduced similar conflicts by 80%. My manager later cited this as a model for cross-team collaboration.
+**Situation:** At my previous company, our engineering team was split between building a new feature (my team) and fixing critical tech debt (another team). Both projects had the same deadline.
+
+**Task:** As the lead engineer, I needed to ensure both deliverables were met without burning out the team.
+
+**Action:** I proposed a compromise: we'd allocate 3 days to the feature and 2 days to tech debt each sprint. I organized a cross-team meeting where each side presented their priorities with data. We agreed on an MVP scope for the feature and a must-fix list for tech debt. I also introduced a shared Jira board so both teams could see dependencies.
+
+**Result:** Both deliverables shipped on time. The feature launched with 95% of planned functionality, and the critical tech debt was reduced by 60%. The two teams started doing joint sprint planning, which reduced similar conflicts by 80%. My manager later cited this as a model for cross-team collaboration.
 
 ### 2. "Describe a time you failed."
 
 **STAR answer:**
-> **Situation:** I was responsible for migrating our monolithic application to microservices over 6 months. I underestimated the complexity of data consistency across services.
->
-> **Task:** Deliver the first three microservices by the deadline.
->
-> **Action:** After the first service caused data inconsistencies in production, I stopped, gathered the team, and did a root cause analysis. I identified that we lacked a proper event-sourcing pattern. I restructured the approach: introduced Kafka for event streaming, added a saga pattern for distributed transactions, and wrote comprehensive integration tests.
->
-> **Result:** The migration was delayed by 3 weeks, but the new architecture handled 10x the traffic without data issues. I documented the lessons learned in a post-mortem that became our team's standard for future migrations. Most importantly, I learned to validate distributed system assumptions early with prototypes.
+**Situation:** I was responsible for migrating our monolithic application to microservices over 6 months. I underestimated the complexity of data consistency across services.
+
+**Task:** Deliver the first three microservices by the deadline.
+
+**Action:** After the first service caused data inconsistencies in production, I stopped, gathered the team, and did a root cause analysis. I identified that we lacked a proper event-sourcing pattern. I restructured the approach: introduced Kafka for event streaming, added a saga pattern for distributed transactions, and wrote comprehensive integration tests.
+
+**Result:** The migration was delayed by 3 weeks, but the new architecture handled 10x the traffic without data issues. I documented the lessons learned in a post-mortem that became our team's standard for future migrations. Most importantly, I learned to validate distributed system assumptions early with prototypes.
 
 ### 3. "Tell me about a time you showed leadership."
 
-> **Situation:** During a critical production outage affecting payments, our on-call engineer was overwhelmed.
->
-> **Task:** Coordinate the response while calming the team and maintaining communication with stakeholders.
->
-> **Action:** I immediately created a war room channel, assigned clear roles: two engineers on root cause, one on mitigation, and myself on communication. I sent status updates every 15 minutes to the VP of Engineering while keeping the team focused. I also set up a secondary environment to test the fix before applying it to production.
->
-> **Result:** Outage resolved in 47 minutes (compared to average 2+ hours). The incident was written up as a runbook, and we reduced future payment outages by 90% with automated monitoring.
+**Situation:** During a critical production outage affecting payments, our on-call engineer was overwhelmed.
+
+**Task:** Coordinate the response while calming the team and maintaining communication with stakeholders.
+
+**Action:** I immediately created a war room channel, assigned clear roles: two engineers on root cause, one on mitigation, and myself on communication. I sent status updates every 15 minutes to the VP of Engineering while keeping the team focused. I also set up a secondary environment to test the fix before applying it to production.
+
+**Result:** Outage resolved in 47 minutes (compared to average 2+ hours). The incident was written up as a runbook, and we reduced future payment outages by 90% with automated monitoring.
 
 ---
 
@@ -736,7 +735,6 @@ The STAR method takes practice — especially under pressure. Use [AI Interview 
 - Practice in English or Russian
 - Track your progress over time
 
-[Start free practice →](https://t.me/developing_interview_trainer_bot)
 `,
   },
   {
@@ -987,7 +985,763 @@ The best preparation is realistic practice. [AI Interview Trainer](https://t.me/
 - Company-specific interview prep (Google, Amazon, Meta, etc.)
 - Progress tracking across sessions
 
-[Start free practice →](https://t.me/developing_interview_trainer_bot)
+`,
+  },
+  {
+    slug: 'nextjs-remix-astro-comparison-2026',
+    title: 'Next.js vs Remix vs Astro: Choosing the Right Framework in 2026',
+    description:
+      'A comprehensive comparison of Next.js, Remix, and Astro in 2026. Learn which framework suits your project — from full-featured apps to content sites — with performance benchmarks, rendering patterns, and migration tips.',
+    date: '2026-06-11',
+    readTime: '11 min read',
+    category: 'Frontend',
+    tags: ['Next.js', 'Remix', 'Astro', 'Frontend', 'Framework'],
+    author: 'AI Interview Trainer Team',
+    published: true,
+    content: `
+The frontend framework landscape has settled into three dominant players by 2026: Next.js, Remix, and Astro. Each serves a distinct purpose, and choosing the right one can make or break your project's developer experience, performance, and maintainability.
+
+This guide breaks down the differences, use cases, and performance characteristics so you can choose confidently — and interview-ready.
+
+---
+
+## Quick Comparison
+
+| Aspect | Next.js | Remix | Astro |
+|--------|---------|-------|-------|
+| Rendering | RSC, SSR, SSG, ISR | SSR + progressive enhancement | Static + islands (SSG-first) |
+| Runtime | Node.js, Edge | Node.js, Edge | Node.js, Deno, Bun |
+| Data fetching | Server Components, server actions | Loaders + actions (same endpoint) | Content collections + SSR endpoints |
+| Bundle size | Medium–large | Medium | Minimal (zero JS by default) |
+| Best for | Full-stack apps, dashboards | Web apps with forms, e-commerce | Content sites, marketing pages, docs |
+| Learning curve | Moderate–steep | Moderate | Low |
+| Popularity (2026) | #1 ecosystem | Strong niche | Growing fast |
+
+---
+
+## Next.js — The Full-Stack Powerhouse
+
+Next.js remains the most popular React meta-framework, and the App Router (now stable since 2023) has matured significantly.
+
+### Strengths
+
+**React Server Components (RSC):** Components that run on the server, send zero JavaScript to the client, and can directly access databases:
+
+\`\`\`tsx
+// This component runs on the server — zero JS sent to client
+async function ProductList() {
+  const products = await db.product.findMany();
+  return (
+    <ul>
+      {products.map((p) => (
+        <li key={p.id}>{p.name} — {p.price.toFixed(2)}</li>
+      ))}
+    </ul>
+  );
+}
+\`\`\`
+
+**Server Actions:** Form handling without API routes:
+
+\`\`\`tsx
+'use server';
+
+export async function createProduct(formData: FormData) {
+  const name = formData.get('name');
+  await db.product.create({ data: { name } });
+  revalidatePath('/products');
+}
+\`\`\`
+
+**Partial Prerendering (PPR):** Hybrid pages that combine static shell + dynamic content — the best of SSG and SSR in one response.
+
+### Weaknesses
+
+- **Complexity:** The App Router has many concepts (layouts, loading.tsx, error.tsx, parallel routes, intercepting routes)
+- **Bundle size:** Even simple pages pull in the React runtime
+- **Lock-in:** Tied tightly to Vercel's platform for optimal features
+
+### Interview Question
+
+"Explain when you'd choose Next.js over a simpler framework like Astro."
+
+**Answer:** "Next.js shines for applications with dynamic user-specific content — dashboards, SaaS platforms, e-commerce with personalized recommendations. It's ideal when you need: (1) server-rendered pages that still feel app-like, (2) a single codebase for frontend and backend, and (3) rich interactivity from React components. I'd choose Astro for a marketing blog or documentation site where static content is the norm."
+
+---
+
+## Remix — The Web Standards Approach
+
+Remix takes a fundamentally different philosophy: embrace web fundamentals (Forms, Fetch, HTML) rather than abstracting them away.
+
+### Strengths
+
+**Progressive enhancement by default:** A Remix app works without JavaScript. The same form that submits via fetch with JS enabled falls back to native browser form submission:
+
+\`\`\`tsx
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const email = formData.get('email');
+  // Validate, save, return response
+  return redirect('/success');
+}
+
+export default function Newsletter() {
+  return (
+    <Form method="post">
+      <input name="email" type="email" required />
+      <button type="submit">Subscribe</button>
+    </Form>
+  );
+}
+\`\`\`
+
+**Nested routes with parallel data loading:** Each route segment defines its own loader, and Remix loads them in parallel — no "waterfall" of nested data fetching.
+
+**Error handling:** Nested error boundaries at every route level, with automatic error hydration.
+
+### Weaknesses
+
+- **Smaller ecosystem:** Fewer tutorials, plugins, and community resources than Next.js
+- **Opinionated:** Less flexibility in data fetching patterns
+- **React-only:** Unlike Astro, you're committed to React
+
+### Interview Question
+
+"How does Remix handle data loading differently from Next.js?"
+
+**Answer:** "Remix uses route-level loaders — each route exports a \`loader\` function that runs on the server, and the data is available to the component via \`useLoaderData\`. Unlike Next.js Pages Router's \`getServerSideProps\` (which loads top-down in sequence), Remix loads all matching route loaders in parallel. With Next.js App Router, RSC achieves similar parallelism but uses a component-level boundary rather than route-level."
+
+---
+
+## Astro — The Content-First Champion
+
+Astro's defining feature: **zero JavaScript by default**. Only the components you explicitly mark as interactive ("islands") ship JS to the browser.
+
+### Strengths
+
+**Content collections:** Type-safe content management with built-in schema validation:
+
+\`\`\`tsx
+// src/content/config.ts
+import { defineCollection, z } from 'astro:content';
+
+export const collections = {
+  blog: defineCollection({
+    schema: z.object({
+      title: z.string(),
+      date: z.date(),
+      tags: z.array(z.string()),
+      draft: z.boolean().default(false),
+    }),
+  }),
+};
+\`\`\`
+
+**Multi-framework islands:** Mix React, Vue, Svelte, and Solid components in the same page:
+
+\`\`\`astro
+---
+import ReactCounter from '../components/ReactCounter.tsx';
+import VueDropdown from '../components/VueDropdown.vue';
+---
+
+<main>
+  <ReactCounter client:load />
+  <VueDropdown client:idle />
+  <p>This paragraph has zero JavaScript — it's just HTML.</p>
+</main>
+\`\`\`
+
+**Performance:** Astro consistently scores 95+ Lighthouse without any optimization effort. The median Astro site ships 94% less JavaScript than the median Next.js site.
+
+### Weaknesses
+
+- **Limited interactivity by default:** Every interactive component must be explicitly opted-in with a client directive
+- **Not ideal for complex apps:** Building a SaaS dashboard in Astro requires creative architecture
+- **Smaller job market:** Fewer companies use Astro in production compared to Next.js
+
+### Interview Question
+
+"What are Astro islands and when would you use them?"
+
+**Answer:** "Astro islands are interactive components in an otherwise static HTML page. You mark a component with a client directive like \`client:load\` (load immediately), \`client:idle\` (load when browser is idle), or \`client:visible\` (load when scrolled into view). This pattern is perfect for content-heavy pages that need small pockets of interactivity — a newsletter signup form, an image carousel, or a dark mode toggle on a documentation site."
+
+---
+
+## Performance Benchmarks (2026)
+
+| Metric | Next.js (RSC) | Remix | Astro |
+|--------|---------------|-------|-------|
+| Median Lighthouse | 85 | 88 | 97 |
+| JS per page (median) | 142 KB | 98 KB | 8 KB |
+| TTFP (server-rendered) | 180ms | 210ms | 45ms (static) |
+| Build time (10k pages) | 12 min | 8 min | 3 min |
+
+---
+
+## Decision Framework
+
+Ask yourself these questions:
+
+1. **Is this a content site?** → Astro (blog, docs, marketing, portfolio)
+2. **Is this an app with forms and user input?** → Remix (e-commerce, social, admin tools)
+3. **Is this a dynamic full-stack app with complex state?** → Next.js (SaaS, dashboards, real-time tools)
+4. **Is SEO critical?** → All three excel, but Astro is easiest to get perfect
+5. **Is your team React-experienced?** → Any works; Next.js has the largest talent pool
+
+---
+
+## How to Practice Framework Interview Questions
+
+The best way to prepare for frontend framework interviews is realistic practice. [AI Interview Trainer](https://t.me/developing_interview_trainer_bot) lets you:
+
+- Practice framework-specific questions with follow-ups
+- Get scored on your architecture decisions
+- Simulate real interview pressure with voice answers
+- Choose difficulty: Junior, Mid, or Senior
+
+`,
+  },
+  {
+    slug: 'designing-real-time-systems-websockets-sse',
+    title: 'Designing Real-Time Systems: WebSockets, SSE, and Event-Driven Architecture',
+    description:
+      'Master the design of real-time systems at scale. Compare WebSockets, Server-Sent Events, and WebRTC. Learn patterns for live chat, notifications, collaborative editing, and real-time dashboards with architecture diagrams.',
+    date: '2026-06-10',
+    readTime: '13 min read',
+    category: 'System Design',
+    tags: ['WebSockets', 'SSE', 'Real-Time', 'System Design', 'Architecture'],
+    author: 'AI Interview Trainer Team',
+    published: true,
+    content: `
+Real-time features are no longer optional — users expect live updates, instant notifications, and collaborative experiences. Designing these systems at scale is a common (and challenging) system design interview topic.
+
+This guide covers the protocols, architectures, and trade-offs you need to ace any real-time system design question.
+
+---
+
+## The Protocols
+
+### WebSockets — Full-Duplex Persistent Connection
+
+WebSockets establish a persistent TCP connection after an HTTP upgrade handshake. Both client and server can send messages at any time.
+
+**Handshake:**
+\`\`\`
+GET /ws HTTP/1.1
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
+Sec-WebSocket-Version: 13
+\`\`\`
+
+**When to use:**
+- Bidirectional communication (chat, games, collaborative editing)
+- High-frequency updates (trading platforms, live sports)
+- Low-latency requirements (< 100ms)
+
+**Pitfalls:**
+- Connection management at scale (10k+ concurrent connections per server)
+- Reconnection logic (exponential backoff with jitter)
+- Message ordering and delivery guarantees
+- No built-in compression — implement your own
+
+### Server-Sent Events (SSE) — One-Way from Server
+
+SSE uses standard HTTP. The server sends a stream of events; the client listens via EventSource API.
+
+\`\`\`javascript
+const eventSource = new EventSource('/api/notifications');
+
+eventSource.onmessage = (event) => {
+  console.log('New notification:', event.data);
+};
+
+eventSource.addEventListener('order-update', (event) => {
+  const order = JSON.parse(event.data);
+  updateOrderUI(order);
+});
+\`\`\`
+
+**When to use:**
+- One-way updates (notifications, stock tickers, feed updates)
+- When you need to work through firewalls and proxies (uses standard HTTP)
+- Simpler server-side implementation
+
+**Limitations:**
+- Browser limit: 6 concurrent SSE connections per domain
+- No binary data support natively (Base64)
+- Client reconnection is browser-managed with limited control
+- Unidirectional only — client cannot send data
+
+### WebRTC — Peer-to-Peer Real-Time Communication
+
+WebRTC enables direct browser-to-browser communication for audio, video, and data. It uses a signaling server (often WebSocket) to establish the connection, then media flows P2P.
+
+**When to use:** Video calls, screen sharing, P2P file transfer, low-latency gaming.
+
+**Interview context:** WebRTC is typically discussed as a specialized solution — most real-time design questions focus on WebSockets with SSE as an alternative.
+
+---
+
+## Scaling WebSockets: The Architecture
+
+### Single Server (Simple)
+
+\`\`\`
+Client 1 --+
+Client 2 --+-- WebSocket Server -- Redis Pub/Sub -- Database
+Client 3 --+
+\`\`\`
+
+Works up to ~10k concurrent connections per server.
+
+### Horizontal Scaling
+
+\`\`\`
+             +-- WebSocket Server 1 --+
+Load Balancer --+-- WebSocket Server 2 --+-- Redis Pub/Sub -- Database
+             +-- WebSocket Server 3 --+
+\`\`\`
+
+**Key challenge:** Client A connects to Server 1, Client B to Server 2. How does A send a message to B?
+
+**Solution — Redis Pub/Sub:**
+Each server subscribes to Redis channels. When Server 1 receives a message from A targeting B, it publishes to Redis. Server 2 (where B is connected) receives the event and forwards it through B's WebSocket.
+
+### Production Architecture
+
+\`\`\`
+             +-- WebSocket Server --+
+Load Balancer --+-- WebSocket Server --+-- Redis Cluster (Pub/Sub + State)
+(sticky sessions)+-- WebSocket Server --+
+                      |
+                  +---+---+
+                  |       |
+            Message Queue  Database
+             (Kafka)      (PostgreSQL)
+                  |
+                  v
+          Analytics / Monitoring
+\`\`\`
+
+**Persistence layer:** Store messages in Cassandra for chat history (write-optimized, time-series friendly).
+
+**Presence service:** Redis sorted sets (ZSET) to track online users with heartbeat expiration.
+
+---
+
+## Design Example: Live Notifications System
+
+**Functional requirements:**
+- Users receive real-time notifications (likes, comments, follows)
+- Users can mark notifications as read
+- Notifications persist for history
+- 50M users, 200M notifications/day
+
+**Protocol choice: SSE** — notifications are server-to-client only, SSE is simpler and works through corporate proxies.
+
+**Database schema:**
+\`\`\`sql
+CREATE TABLE notifications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id BIGINT NOT NULL,
+  type VARCHAR(50) NOT NULL,
+  actor_id BIGINT NOT NULL,
+  target_id BIGINT,
+  metadata JSONB,
+  is_read BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_notifications_user_time
+  ON notifications (user_id, created_at DESC);
+\`\`\`
+
+**Scaling considerations:**
+- SSE Gateway maintains a map: user_id -> response stream
+- Use consistent hashing across SSE Gateway instances
+- Store user-to-server mapping in Redis (with TTL for cleanup)
+- Batch Kafka messages for high-throughput scenarios
+
+---
+
+## Design Example: Collaborative Document Editing
+
+**Requirements:**
+- Multiple users edit the same document simultaneously
+- Changes sync in real-time (< 200ms)
+- Conflict resolution (Operational Transform or CRDT)
+- Version history
+
+**Protocol:** WebSockets (bidirectional, low latency)
+
+**Key challenge — conflict resolution:**
+
+**Operational Transform (OT):** Google Docs approach. Each operation is transformed against concurrent operations to produce a consistent result. Requires a central server.
+
+**CRDT (Conflict-Free Replicated Data Types):** Each client's changes converge automatically without a central coordinator. Used by Figma and Notion.
+
+**Interview answer structure:**
+> "For collaborative editing, I'd use WebSockets with a CRDT-based approach. Each character position is assigned a unique identifier (client_id + lamport timestamp). When two users type simultaneously, the CRDT merges both changes deterministically — all clients arrive at the same document state. The server acts as an ordering layer (not a transformation layer), which simplifies the architecture compared to OT."
+
+---
+
+## Common Interview Questions
+
+### "How do you handle reconnection after a dropped WebSocket?"
+
+Use exponential backoff with jitter:
+\`\`\`javascript
+let attempt = 0;
+const maxAttempts = 10;
+
+function connect() {
+  const ws = new WebSocket(url);
+  ws.onclose = () => {
+    const delay = Math.min(1000 * Math.pow(2, attempt) + Math.random() * 1000, 30000);
+    setTimeout(connect, delay);
+    attempt++;
+  };
+  ws.onopen = () => { attempt = 0; };
+}
+\`\`\`
+
+On reconnect: send last received message ID to get any missed messages.
+
+### "How do you broadcast to millions of users?"
+
+**Fanout patterns:**
+1. **In-app fanout:** Redis Pub/Sub per server (100k users)
+2. **Middle-scale:** Redis Cluster across server groups (1M users)
+3. **Massive scale:** Dedicated push service + CDN-based SSE (10M+ users)
+
+### "WebSockets vs SSE — which would you use for a live sports score app?"
+
+"I'd use SSE because: (1) updates are unidirectional (server to client), (2) SSE works through corporate firewalls, (3) simpler to implement and debug, (4) auto-reconnection is built into the EventSource API. I'd fall back to WebSockets only if the client needed to send data frequently (e.g., betting actions)."
+
+---
+
+## Practice Real-Time System Design
+
+These scenarios are common in FAANG interviews. [AI Interview Trainer](https://t.me/developing_interview_trainer_bot) helps you practice:
+
+- Design WhatsApp / Telegram (messaging + real-time delivery)
+- Design YouTube Live (streaming + chat)
+- Design a real-time collaboration tool (like Figma or Notion)
+- Design a live auction system (bids + notifications)
+- Get scored on your architecture decisions and trade-off analysis
+
+`,
+  },
+  {
+    slug: 'tell-me-about-yourself-interview-guide',
+    title: '"Tell Me About Yourself": The Ultimate Icebreaker Guide',
+    description:
+      'Master the most important question in any interview — "Tell me about yourself." Learn the Present-Past-Future framework, see examples for every career stage, and get templates you can customize in minutes.',
+    date: '2026-06-09',
+    readTime: '9 min read',
+    category: 'Behavioral',
+    tags: ['Tell Me About Yourself', 'Behavioral Interview', 'Icebreaker', 'Soft Skills'],
+    author: 'AI Interview Trainer Team',
+    published: true,
+    content: `
+"Tell me about yourself" is the first question in almost every interview — and it's the one most people get wrong. They ramble through their entire career history, cover irrelevant details, and miss the opportunity to set the tone for the entire conversation.
+
+This guide gives you a proven framework, examples for every level, and templates you can customize tonight.
+
+---
+
+## The Present-Past-Future Framework
+
+The best answers follow a simple three-part structure:
+
+- **Present (10-15 seconds)** — Who are you now? What's your current role?
+- **Past (30-40 seconds)** — How did you get here? What's relevant from your background?
+- **Future (10-15 seconds)** — Why are you here? What do you want next?
+
+**Total: ~60 seconds.** Any longer and you lose the interviewer's attention.
+
+### Why This Works
+
+| Component | Purpose | Interviewer's Takeaway |
+|-----------|---------|----------------------|
+| Present | Establish credibility now | "They know their current value" |
+| Past | Show progression and relevance | "Their experience maps to our needs" |
+| Future | Connect to this specific role | "They want THIS job, not just any job" |
+
+**Critical rule:** Never memorize a script. Know the bullet points and speak naturally.
+
+---
+
+## Template: Software Engineer (Mid-Level)
+
+"I'm a full-stack engineer at [Company], where I've been building [product/feature] for the past two years. I work across the stack — React on the frontend, Node.js on the backend, and manage our deployment pipeline on AWS.
+
+Before that, I spent three years at [Previous Company] as a frontend developer, where I led the migration from jQuery to React that improved page load times by 40%. I also built our internal component library that's now used by four teams.
+
+I'm excited about [Target Company] because I've been following your work on [specific product/initiative], and I'd love to bring my experience building scalable frontend systems to your team. That's why I applied for this Senior Frontend Engineer role."
+
+**Why it works:**
+- Present: current role and tech stack (15s)
+- Past: specific achievement with metrics (35s)
+- Future: shows research and genuine interest (10s)
+
+---
+
+## Variation: New Grad / Entry Level
+
+"I just graduated from [University] with a degree in Computer Science, where I focused on full-stack web development. For my capstone project, I built [project description] that served 200+ students, using React and PostgreSQL.
+
+During my internship at [Company], I implemented a dashboard feature that reduced manual reporting time by 15 hours per week. I also contributed to the open-source library [name] with a pull request that improved form validation performance.
+
+I'm applying to [Target Company] because I admire your engineering culture and I want to grow as an engineer while working on products that impact millions of users. I'm particularly interested in the work your team is doing with [specific technology or initiative]."
+
+**Why it works:**
+- Present: education + relevant skills (15s)
+- Past: tangible achievements (internship, capstone) (35s)
+- Future: connects degree to real impact (10s)
+
+---
+
+## Variation: Senior / Lead Engineer
+
+"I lead the platform engineering team at [Company], where I oversee a group of eight engineers building our microservices infrastructure. Over the past three years, we migrated from a monolith to 12 microservices, improved deployment frequency from weekly to multiple times per day, and reduced P0 incidents by 70%.
+
+Before that, I was a senior backend engineer at [Previous Company], where I designed the payment processing system handling $50M in annual transactions. I also mentored five junior engineers and established our team's on-call best practices.
+
+I'm excited about the Staff Engineer opportunity at [Target Company] because I've followed how you've scaled [specific product] to 10M users, and I believe my experience with distributed systems and team leadership can help you tackle the next growth phase. I'm particularly interested in your approach to [specific challenge the company faces]."
+
+**Why it works:**
+- Present: leadership scope + impact metrics (15s)
+- Past: two key achievements with systems + people (35s)
+- Future: shows deep research and specific value proposition (10s)
+
+---
+
+## Variation: Career Changer
+
+"I'm a software engineer specializing in React and TypeScript at [Current Company], where I build customer-facing web applications.
+
+Before transitioning into tech two years ago, I spent five years as a project manager in construction — and that experience gives me a unique perspective. I learned to communicate with stakeholders, manage complex timelines, and break down large problems into actionable steps. When I decided to switch careers, I completed an intensive bootcamp and immediately applied my project management skills to engineering: I led the rollout of our design system, coordinated across three teams, and delivered on time.
+
+I'm drawn to [Target Company] because your mission to [company mission] aligns with the kind of impact I want to make. I believe my combination of technical skills and cross-functional experience lets me contribute not just as an engineer, but as someone who understands both the business and technical sides."
+
+**Why it works:**
+- Present: current technical identity (15s)
+- Past: reframes non-traditional background as strength (40s)
+- Future: shows self-awareness + unique value (10s)
+
+---
+
+## Common Mistakes
+
+1. **Reciting your resume** — The interviewer has read it. Don't repeat it.
+2. **Too long** — Keep it under 90 seconds. Practice with a timer.
+3. **No narrative** — A list of jobs isn't a story. Connect the dots.
+4. **Generic ending** — "I'm looking for new challenges" says nothing. Be specific about this company.
+5. **Too rehearsed** — Sound natural, not like you're reading from a script.
+6. **Wrong level of detail** — Senior roles: focus on impact and leadership. Junior: focus on potential and learning.
+
+---
+
+## Adapting for Different Formats
+
+**Phone screen (recruiter, 30 min):** Keep it to 60 seconds. Focus on high-level impact — one achievement per role.
+
+**Technical on-site (hiring manager, 45+ min):** 60-90 seconds. Slightly more technical detail, but still concise.
+
+**Behavioral round (HR/VP):** 90 seconds. Emphasize leadership, collaboration, and cultural fit.
+
+**Coffee chat (informal):** Let it be conversational. Start with present, let them ask follow-ups.
+
+---
+
+## How to Practice
+
+The best "Tell me about yourself" answers come from practice — not memorization. [AI Interview Trainer](https://t.me/developing_interview_trainer_bot) can help:
+
+- Record your answer and get feedback on clarity and structure
+- Practice with follow-up questions (the interviewer will ask based on what you say)
+- Get scored on Present, Past, and Future sections separately
+- Practice in English or Russian
+- Receive tailored improvement suggestions
+
+`,
+  },
+  {
+    slug: 'software-engineer-salary-negotiation-2026',
+    title: 'How to Negotiate Your Software Engineering Salary in 2026',
+    description:
+      'A data-driven guide to salary negotiation for software engineers. Learn market rates, negotiation scripts, total compensation breakdown (base, RSUs, bonus), and strategies for offers, counteroffers, and promotions in 2026.',
+    date: '2026-06-08',
+    readTime: '10 min read',
+    category: 'Career',
+    tags: ['Salary Negotiation', 'Career Advice', 'Compensation', 'Job Search'],
+    author: 'AI Interview Trainer Team',
+    published: true,
+    content: `
+Salary negotiation is the highest-leverage conversation in your career. A 10% improvement negotiated once compounds over your entire career — yet most engineers leave money on the table because they're uncomfortable asking for more.
+
+This guide covers the data, scripts, and strategies you need in 2026.
+
+---
+
+## Know Your Market: Compensation Bands (2026)
+
+### United States (annual, USD)
+
+| Level | Base Salary | RSUs (4yr) | Annual Bonus | Total Comp |
+|-------|-------------|------------|--------------|------------|
+| Entry (0-2yr) | $90k-$130k | $20k-$80k | 5-10% | $100k-$160k |
+| Mid (3-5yr) | $130k-$180k | $80k-$200k | 10-15% | $160k-$250k |
+| Senior (6-9yr) | $170k-$230k | $200k-$500k | 10-20% | $230k-$400k |
+| Staff (10+yr) | $200k-$300k | $400k-$1M+ | 15-25% | $350k-$600k+ |
+
+### Europe (annual, EUR)
+
+| Level | Base Salary |
+|-------|-------------|
+| Entry | EUR 40k-EUR 65k |
+| Mid | EUR 60k-EUR 95k |
+| Senior | EUR 85k-EUR 140k |
+| Staff | EUR 130k-EUR 200k+ |
+
+**Remote factor:** Remote roles outside major hubs typically pay 10-20% less than SF/NYC/London. Some companies (GitLab, Stripe) adjust by location; others pay the same regardless.
+
+---
+
+## The Negotiation Timeline
+
+### Phase 1: Before You Interview (Preparation)
+
+**1. Research the company's compensation philosophy**
+- Levels.fyi, Blind, Glassdoor, and Repvue are your best sources
+- For public companies: check their most recent S-1 or 10-K for RSU refresh policies
+- Talk to current/former employees (try Blind or LinkedIn)
+
+**2. Determine your walk-away number**
+Calculate your minimum acceptable total comp. Everything above that is negotiation room.
+
+**3. Prepare leverage**
+- Interview with 2-3 companies simultaneously (competing offers = 2-3x more leverage)
+- Have a clear "why I want this" story that doesn't mention money
+
+### Phase 2: The Offer Call
+
+**Rule #1: Don't give the first number.**
+
+Recruiter: "What's your expected salary range?"
+You: "I'm focused on finding the right fit — strong team, interesting problems, good culture. If this ends up being a mutual fit, I'm confident we can find a compensation package that works for both sides. What's the budgeted range for this role?"
+
+If pressed:
+"Based on my research and interviews at similar companies, I'm looking at ranges from $190k to $230k total comp for Senior roles. But let's first make sure this is the right role for me."
+
+**Rule #2: Never accept on the first call.**
+
+"Thank you for the offer. I'm really excited about the team and the work. I'd like a few days to review the details carefully before we discuss next steps."
+
+### Phase 3: The Negotiation
+
+**Script for the callback:**
+
+"I've reviewed the offer thoroughly and I'm very excited about the role. Based on my research of market rates for this level and my experience, I was hoping for a total comp closer to $X. I have competing offers at $Y and $Z, but I'd prefer to join [Company] because of the team and product. Can you work with me on getting closer to $X?"
+
+**What to negotiate (in priority order):**
+
+1. **Base salary** — highest leverage, compounds with future raises
+2. **Signing bonus** — one-time, easiest to increase (companies have bonus budget separate from salary)
+3. **RSUs** — second highest value, ask for more shares or refresher
+4. **Performance bonus** — harder to change, but possible
+5. **Start date flexibility** — easy to ask for, shows you have options
+
+### Phase 4: The Counteroffer
+
+When the recruiter comes back with an improved number:
+
+- **If it meets your target:** "Thank you, that works for me. I'm ready to sign."
+- **If it's close but not enough:** "I appreciate the improvement. I'm at $X now — can you get to $Y? If so, I'll accept right now."
+- **If it hasn't moved much:** "I'm still quite far from what I'd need to accept. Is there flexibility on [specific component]?"
+
+---
+
+## Advanced Strategies
+
+### 1. Use Competing Offers
+
+The single most effective lever. When you have a competing offer:
+
+"I have an offer from [Competitor] for $220k total comp. I'd prefer [Company] because of [specific reason]. Can you match or exceed that?"
+
+**What not to do:** Lie about competing offers. Recruiters in the same industry talk to each other.
+
+### 2. Negotiate RSUs, Not Just Base
+
+RSU refreshers are often more flexible than base salary. Ask about:
+- First-year acceleration (33% cliff instead of 25%)
+- Refresher grant policy (annual refresh? performance-based?)
+- Early exercise options (for pre-IPO companies)
+
+### 3. The "One More Thing" Strategy
+
+After agreeing on the main numbers, ask for one more small thing:
+
+"Great, I'll accept. One more thing — could you add a $5k signing bonus to help with relocation? That would make this perfect."
+
+This works because they've already mentally closed the deal.
+
+### 4. Negotiate After You Accept (Sign-On)
+
+Some companies offer sign-on bonuses or guaranteed first-year bonuses. Always negotiate these — they have separate budgets.
+
+---
+
+## What NOT to Do
+
+| Mistake | Why It Hurts You |
+|---------|-----------------|
+| Giving a range | They hear the bottom of your range |
+| Accepting the first offer | Almost always room for 10-20% more |
+| Negotiating via email | Phone/video is better for reading tone |
+| Being adversarial | You'll work with these people — keep it collaborative |
+| Forgetting total comp | $10k more base != $10k more total (taxes, RSU vesting) |
+| Neglecting equity structure | $100k RSUs at a private company != $100k cash |
+
+---
+
+## Special Situations
+
+### Promotions
+
+Promotion time is another negotiation moment. Before promotion discussions:
+- Document your impact with metrics (last 6 months)
+- Research the market rate for the next level
+- Come prepared with 2-3 specific examples of operating at the next level
+
+### Startups vs Big Tech
+
+| Factor | Big Tech | Startup |
+|--------|----------|---------|
+| Base salary | Higher ($180k-$300k) | Lower ($120k-$180k) |
+| Equity | Liquid, valuable | Illiquid, high risk/reward |
+| Bonus | 10-25% guaranteed | Rare |
+| Perks | Full benefits | Usually less |
+| Negotiation room | Moderate (bands exist) | High (fewer rules) |
+
+**Startup negotiation tip:** Ask for more options (stock), a higher option pool %, or extended exercise window (90 days -> 10 years).
+
+---
+
+## Practice Negotiation Scenarios
+
+Negotiation is a skill — and it improves with practice. [AI Interview Trainer](https://t.me/developing_interview_trainer_bot) now includes career coaching scenarios:
+
+- Practice salary negotiation conversations with an AI recruiter
+- Get feedback on your negotiation script and tone
+- Practice turning down offers gracefully
+- Learn to handle "What's your expected salary?" without giving a number first
+- Available in English and Russian
+
 `,
   },
 ];

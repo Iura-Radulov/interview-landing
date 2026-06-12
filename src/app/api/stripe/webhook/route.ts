@@ -52,10 +52,23 @@ export async function POST(request: Request) {
           WHERE id = ?
         `).run(subscriptionId, plan.max_interviews_per_day, userId);
 
-        db.prepare(`
-          INSERT INTO subscriptions (user_id, tariff_plan_id, start_date, end_date, status, created_at, updated_at)
-          VALUES (?, ?, datetime('now'), datetime('now', '+' || ? || ' days'), 'active', datetime('now'), datetime('now'))
-        `).run(userId, planId, plan.duration_days);
+        // Check for existing active subscription to extend from its end_date
+        const existingActive = db.prepare(
+          "SELECT id, end_date FROM subscriptions WHERE user_id = ? AND status = 'active' AND end_date > datetime('now') ORDER BY end_date DESC LIMIT 1"
+        ).get(userId) as { id: number; end_date: string } | undefined;
+
+        if (existingActive) {
+          // Extend from current end_date (renewal)
+          db.prepare(
+            "UPDATE subscriptions SET end_date = datetime(end_date, '+' || ? || ' days'), updated_at = datetime('now') WHERE id = ?"
+          ).run(plan.duration_days, existingActive.id);
+        } else {
+          // New subscription from now
+          db.prepare(`
+            INSERT INTO subscriptions (user_id, tariff_plan_id, start_date, end_date, status, created_at, updated_at)
+            VALUES (?, ?, datetime('now'), datetime('now', '+' || ? || ' days'), 'active', datetime('now'), datetime('now'))
+          `).run(userId, planId, plan.duration_days);
+        }
 
         db.prepare(`
           INSERT INTO payments (user_id, tariff_plan_id, amount, currency, status, payment_method, payment_id, paid_at, created_at, updated_at)
@@ -74,23 +87,14 @@ export async function POST(request: Request) {
         const user = db.prepare('SELECT id FROM users WHERE stripe_customer_id = ?').get(customerId) as Record<string, unknown> | undefined;
         if (!user) break;
 
-        if (subscription.status === 'active') {
-          db.prepare("UPDATE users SET subscription_status = 'active' WHERE id = ?").run(user.id);
-          // Extend the active subscription by the plan's duration
-          const activeSub = db.prepare(
-            `SELECT s.id, tp.duration_days FROM subscriptions s
-             JOIN tariff_plans tp ON s.tariff_plan_id = tp.id
-             WHERE s.user_id = ? AND s.status = 'active'
-             ORDER BY s.created_at DESC LIMIT 1`
-          ).get(user.id) as { id: number; duration_days: number } | undefined;
-          if (activeSub) {
-            db.prepare(
-              "UPDATE subscriptions SET end_date = datetime('now', '+' || ? || ' days'), updated_at = datetime('now') WHERE id = ?"
-            ).run(activeSub.duration_days, activeSub.id);
-          }
-        } else if (subscription.status === 'canceled' || subscription.status === 'past_due') {
+        if (subscription.status === 'canceled' || subscription.status === 'past_due' || subscription.status === 'unpaid' || (subscription.cancel_at_period_end && subscription.status === 'active')) {
+          // Cancel or pending cancellation — downgrade to Free
           db.prepare("UPDATE users SET subscription_status = 'free', stripe_subscription_id = NULL, max_interviews_per_day = 2 WHERE id = ?").run(user.id);
           db.prepare("UPDATE subscriptions SET status = 'cancelled' WHERE user_id = ? AND status = 'active'").run(user.id);
+        } else if (subscription.status === 'active' && !subscription.cancel_at_period_end) {
+          // Subscription is active and NOT pending cancellation — just ensure status
+          db.prepare("UPDATE users SET subscription_status = 'active' WHERE id = ?").run(user.id);
+          // Do NOT extend end_date — it was set correctly at checkout
         }
         break;
       }
