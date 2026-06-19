@@ -3,6 +3,8 @@ import { getActiveTariffs } from '@/lib/db';
 import TariffCardsGrid from '@/components/TariffCardsGrid';
 import TariffsLayout from './TariffsLayout';
 import type { Metadata } from 'next';
+import JsonLd from '@/components/JsonLd';
+import { tariffsSchema, breadcrumbSchema } from '@/lib/schema';
 
 export const dynamic = 'force-dynamic';
 
@@ -34,6 +36,13 @@ async function TariffsContent() {
 export default function TariffsPage() {
   return (
     <TariffsLayout>
+      <JsonLd data={tariffsSchema()} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Pricing', url: '/tariffs' },
+        ])}
+      />
       <Suspense fallback={<TariffsSkeleton />}>
         <TariffsContent />
       </Suspense>

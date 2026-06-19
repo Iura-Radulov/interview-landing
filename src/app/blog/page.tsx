@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import BlogListingPage from './BlogListingPage';
+import JsonLd from '@/components/JsonLd';
+import { blogListingSchema, breadcrumbSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Blog — AI Interview Trainer',
@@ -13,5 +15,16 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  return <BlogListingPage />;
+  return (
+    <>
+      <JsonLd data={blogListingSchema()} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Blog', url: '/blog' },
+        ])}
+      />
+      <BlogListingPage />
+    </>
+  );
 }

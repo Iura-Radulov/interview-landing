@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug, getPublishedPosts } from '@/lib/blog/posts';
 import BlogPostContent from './BlogPostContent';
 import type { Metadata } from 'next';
+import JsonLd from '@/components/JsonLd';
+import { blogPostSchema, breadcrumbSchema, organizationSchema } from '@/lib/schema';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -35,5 +37,18 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  return <BlogPostContent post={post} />;
+  return (
+    <>
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={blogPostSchema(post)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Blog', url: '/blog' },
+          { name: post.title, url: `/blog/${post.slug}` },
+        ])}
+      />
+      <BlogPostContent post={post} />
+    </>
+  );
 }

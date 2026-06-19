@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import AboutContent from './AboutContent';
+import JsonLd from '@/components/JsonLd';
+import { aboutPageSchema, breadcrumbSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'About — AI Interview Trainer',
@@ -7,5 +9,16 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutContent />;
+  return (
+    <>
+      <JsonLd data={aboutPageSchema()} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'About', url: '/about' },
+        ])}
+      />
+      <AboutContent />
+    </>
+  );
 }
