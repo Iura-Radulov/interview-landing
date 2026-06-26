@@ -17,9 +17,9 @@ export default function LandingFeatures() {
       descKey: 'features.platform.desc',
     },
     {
-      icon: '🌍',
-      titleKey: 'features.languages.title',
-      descKey: 'features.languages.desc',
+      icon: '🏗️',
+      titleKey: 'features.system-design.title',
+      descKey: 'features.system-design.desc',
     },
     {
       icon: '📄',
