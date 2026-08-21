@@ -150,6 +150,22 @@ export default function Footer() {
           <p className="mt-1">Registered in England and Wales. Company number: 17249290.</p>
           <p className="mt-1">Registered office: 5 Brayford Square, London, E1 0SG, United Kingdom.</p>
           <p className="mt-4">{t('footer.copyright', { year: currentYear })}</p>
+          <div className="mt-6 flex justify-center">
+            <a
+              href="https://tools.cafe"
+              target="_blank"
+              rel="noopener"
+              aria-label="Featured on tools.cafe"
+            >
+              <img
+                src="https://tools.cafe/b/dark.svg"
+                alt="Featured on tools.cafe"
+                width={256}
+                height={80}
+                className="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
