@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@/lib/auth';
+import { getSession, sessionCookieHeader } from '@/lib/auth';
 import { getCompanySets, getUserCompanies } from '@/lib/db';
 import { FASTAPI_URL } from '@/lib/constants';
 
@@ -83,7 +83,7 @@ export async function DELETE(request: NextRequest) {
       `${FASTAPI_URL}/api/user-companies/${companyId}`,
       {
         method: 'DELETE',
-        headers: { 'X-User-ID': String(session.telegramId) },
+        headers: await sessionCookieHeader(),
       },
     );
 

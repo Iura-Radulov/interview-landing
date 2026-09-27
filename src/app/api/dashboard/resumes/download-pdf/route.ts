@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@/lib/auth';
+import { getSession, sessionCookieHeader } from '@/lib/auth';
 import { FASTAPI_URL } from '@/lib/constants';
 
 export async function GET(request: NextRequest) {
@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const resp = await fetch(`${FASTAPI_URL}/api/user-resumes/${resumeId}/download-pdf`, {
-      headers: { 'X-User-ID': String(session.telegramId) },
+      headers: await sessionCookieHeader(),
     });
 
     if (!resp.ok) {

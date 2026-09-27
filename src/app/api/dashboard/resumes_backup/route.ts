@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@/lib/auth';
+import { getSession, sessionCookieHeader } from '@/lib/auth';
 import { getDb } from '@/lib/db';
 import { FASTAPI_URL } from '@/lib/constants';
 
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
     const resp = await fetch(`${FASTAPI_URL}/user-resumes/upload`, {
       method: 'POST',
       headers: {
-        'X-User-ID': String(session.telegramId),
+        ...(await sessionCookieHeader()),
       },
       body: fastForm,
     });
@@ -109,7 +109,7 @@ export async function DELETE(request: NextRequest) {
   try {
     const resp = await fetch(`${FASTAPI_URL}/user-resumes/${resumeId}`, {
       method: 'DELETE',
-      headers: { 'X-User-ID': String(session.telegramId) },
+      headers: await sessionCookieHeader(),
     });
 
     if (!resp.ok) {

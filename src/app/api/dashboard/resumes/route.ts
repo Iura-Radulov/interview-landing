@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@/lib/auth';
+import { getSession, sessionCookieHeader } from '@/lib/auth';
 import { getDb } from '@/lib/db';
 import { FASTAPI_URL } from '@/lib/constants';
 
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
       resp = await fetch(`${FASTAPI_URL}/api/user-resumes/upload`, {
         method: 'POST',
         headers: {
-          'X-User-ID': String(session.telegramId),
+          ...(await sessionCookieHeader()),
         },
         body: fastForm,
       });
@@ -129,7 +129,7 @@ export async function DELETE(request: NextRequest) {
     try {
       resp = await fetch(`${FASTAPI_URL}/api/user-resumes/${resumeId}`, {
         method: 'DELETE',
-        headers: { 'X-User-ID': String(session.telegramId) },
+        headers: await sessionCookieHeader(),
       });
     } catch (fetchErr) {
       const msg = fetchErr instanceof Error ? fetchErr.message : 'Connection failed';
