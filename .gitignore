@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# stale build snapshots (were tracked; 700+/1500+ files of build output)
+.next_old/
+# local backups / build snapshots
+.next_backup_*/
+.next_prev_*/
+*.bak-*
+*.bundle
